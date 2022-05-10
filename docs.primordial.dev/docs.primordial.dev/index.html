@@ -1,0 +1,1903 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+
+    <link rel="icon" href="assets/icon.svg">
+    <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+
+
+
+    <title>primordial lua api</title>
+
+
+
+    <link rel="stylesheet" href="assets/stylesheets/main.50e68009.min.css">
+
+
+    <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
+
+
+
+
+
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,400,400i,700%7C&display=fallback">
+    <style>
+        :root {
+            --md-text-font: "Mulish";
+            --md-code-font: ""
+        }
+    </style>
+
+
+
+    <link rel="stylesheet" href="stylesheets/extra.css">
+
+    <script>
+        __md_scope = new URL(".", location), __md_get = (e, _ = localStorage, t = __md_scope) => JSON.parse(_.getItem(t.pathname + "." + e)), __md_set = (e, _, t = localStorage, a = __md_scope) => {
+            try {
+                t.setItem(a.pathname + "." + e, JSON.stringify(_))
+            } catch (e) {}
+        }
+    </script>
+
+
+
+
+
+</head>
+
+
+
+
+
+
+
+
+
+<body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+
+
+
+    <script>
+        var palette = __md_get("__palette");
+        if (palette && "object" == typeof palette.color)
+            for (var key of Object.keys(palette.color)) document.body.setAttribute("data-md-color-" + key, palette.color[key])
+    </script>
+
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+
+
+        <a href="#location" class="md-skip">
+          Skip to content
+        </a>
+
+    </div>
+    <div data-md-component="announce">
+
+    </div>
+
+
+
+
+    <header class="md-header" data-md-component="header">
+        <nav class="md-header__inner md-grid" aria-label="Header">
+            <a href="." title="primordial lua api" class="md-header__button md-logo" aria-label="primordial lua api" data-md-component="logo">
+        
+  <img src="assets/logo.svg" alt="logo">
+
+      </a>
+            <label class="md-header__button md-icon" for="__drawer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      </label>
+            <div class="md-header__title" data-md-component="header-title">
+                <div class="md-header__ellipsis">
+                    <div class="md-header__topic">
+                        <span class="md-ellipsis">
+
+              <!--
+                  This disables the website name, since we have a logo with text we don't need
+                  the title.
+
+                primordial lua api
+                -->
+                
+            </span>
+                    </div>
+                    <div class="md-header__topic" data-md-component="header-topic">
+                        <span class="md-ellipsis">
+              
+                Getting Started
+              
+            </span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="md-header__option" data-md-component="palette">
+
+
+
+                <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="" aria-hidden="true" type="radio" name="__palette" id="__palette_1">
+
+
+
+
+                <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="" aria-hidden="true" type="radio" name="__palette" id="__palette_2">
+
+
+            </form>
+
+
+
+            <label class="md-header__button md-icon" for="__search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        </label>
+            <div class="md-search" data-md-component="search" role="dialog">
+                <label class="md-search__overlay" for="__search"></label>
+                <div class="md-search__inner" role="search">
+                    <form class="md-search__form" name="search">
+                        <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+                        <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+                        <nav class="md-search__options" aria-label="Search">
+
+                            <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+
+                            <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+                        </nav>
+
+                    </form>
+                    <div class="md-search__output">
+                        <div class="md-search__scrollwrap" data-md-scrollfix>
+                            <div class="md-search-result" data-md-component="search-result">
+                                <div class="md-search-result__meta">
+                                    Initializing search
+                                </div>
+                                <ol class="md-search-result__list"></ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </nav>
+
+    </header>
+
+    <div class="md-container" data-md-component="container">
+
+
+
+
+
+
+        <main class="md-main" data-md-component="main">
+            <div class="md-main__inner md-grid">
+
+
+
+                <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                    <div class="md-sidebar__scrollwrap">
+                        <div class="md-sidebar__inner">
+
+
+
+                            <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                                <label class="md-nav__title" for="__drawer">
+    <a href="." title="primordial lua api" class="md-nav__button md-logo" aria-label="primordial lua api" data-md-component="logo">
+      
+  <img src="assets/logo.svg" alt="logo">
+
+    </a>
+    primordial lua api
+  </label>
+
+                                <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+
+
+
+
+                                    <li class="md-nav__item md-nav__item--active">
+
+                                        <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+
+
+
+                                        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                        <a href="." class="md-nav__link md-nav__link--active">
+        Getting Started
+      </a>
+
+
+
+                                        <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+
+
+
+                                            <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+                                            <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+
+                                                <li class="md-nav__item">
+                                                    <a href="#location" class="md-nav__link">
+    Location
+  </a>
+
+                                                </li>
+
+                                                <li class="md-nav__item">
+                                                    <a href="#contributing" class="md-nav__link">
+    Contributing
+  </a>
+
+                                                </li>
+
+                                            </ul>
+
+                                        </nav>
+
+                                    </li>
+
+
+
+
+
+
+
+
+
+
+
+                                    <li class="md-nav__item md-nav__item--nested">
+
+
+                                        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2">
+
+
+
+
+                                        <label class="md-nav__link" for="__nav_2">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                        <nav class="md-nav" aria-label="Examples" data-md-level="1">
+                                            <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+                                            <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="examples/iterating_enemies/" class="md-nav__link">
+        Iterating Enemies
+      </a>
+                                                </li>
+
+
+
+
+                                            </ul>
+                                        </nav>
+                                    </li>
+
+
+
+
+
+
+
+
+
+
+
+                                    <li class="md-nav__item md-nav__item--nested">
+
+
+                                        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3">
+
+
+
+
+                                        <label class="md-nav__link" for="__nav_3">
+          Callbacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                        <nav class="md-nav" aria-label="Callbacks" data-md-level="1">
+                                            <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Callbacks
+        </label>
+                                            <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/AIMBOT_HIT/" class="md-nav__link">
+        AIMBOT_HIT
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/AIMBOT_MISS/" class="md-nav__link">
+        AIMBOT_MISS
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/AIMBOT_SHOOT/" class="md-nav__link">
+        AIMBOT_SHOOT
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/ANTIAIM/" class="md-nav__link">
+        ANTIAIM
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/DRAW_MODEL/" class="md-nav__link">
+        DRAW_MODEL
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/DRAW_WATERMARK/" class="md-nav__link">
+        DRAW_WATERMARK
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/EVENT/" class="md-nav__link">
+        EVENT
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/FINISH_COMMAND/" class="md-nav__link">
+        FINISH_COMMAND
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/HITSCAN/" class="md-nav__link">
+        HITSCAN
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/NET_UPDATE/" class="md-nav__link">
+        NET_UPDATE
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/PAINT/" class="md-nav__link">
+        PAINT
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/PLAYER_ESP/" class="md-nav__link">
+        PLAYER_ESP
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/RUN_COMMAND/" class="md-nav__link">
+        RUN_COMMAND
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/SCREEN_HITMARKER/" class="md-nav__link">
+        SCREEN_HITMARKER
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/SETUP_COMMAND/" class="md-nav__link">
+        SETUP_COMMAND
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/SHUTDOWN/" class="md-nav__link">
+        SHUTDOWN
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/SUPPORTIVE_RECTANGLE/" class="md-nav__link">
+        SUPPORTIVE_RECTANGLE
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/TARGET_SELECTION/" class="md-nav__link">
+        TARGET_SELECTION
+      </a>
+                                                </li>
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item">
+                                                    <a href="api_callbacks/WORLD_HITMARKER/" class="md-nav__link">
+        WORLD_HITMARKER
+      </a>
+                                                </li>
+
+
+
+
+                                            </ul>
+                                        </nav>
+                                    </li>
+
+
+
+
+
+
+
+
+
+
+
+                                    <li class="md-nav__item md-nav__item--nested">
+
+
+                                        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4">
+
+
+
+
+                                        <label class="md-nav__link" for="__nav_4">
+          API Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                        <nav class="md-nav" aria-label="API Reference" data-md-level="1">
+                                            <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          API Reference
+        </label>
+                                            <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+
+                                                <li class="md-nav__item md-nav__item--nested">
+
+
+                                                    <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1">
+
+
+
+
+                                                    <label class="md-nav__link" for="__nav_4_1">
+          Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                                    <nav class="md-nav" aria-label="Functions" data-md-level="2">
+                                                        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Functions
+        </label>
+                                                        <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/antiaim/" class="md-nav__link">
+        antiaim
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/client/" class="md-nav__link">
+        client
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/debug_overlay/" class="md-nav__link">
+        debug_overlay
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/engine/" class="md-nav__link">
+        engine
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/entity_list/" class="md-nav__link">
+        entity_list
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/exploits/" class="md-nav__link">
+        exploits
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/game_rules/" class="md-nav__link">
+        game_rules
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/global_vars/" class="md-nav__link">
+        global_vars
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/input/" class="md-nav__link">
+        input
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/materials/" class="md-nav__link">
+        materials
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/memory/" class="md-nav__link">
+        memory
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/menu/" class="md-nav__link">
+        menu
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/player_resource/" class="md-nav__link">
+        player_resource
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/ragebot/" class="md-nav__link">
+        ragebot
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/render/" class="md-nav__link">
+        render
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_functions/trace/" class="md-nav__link">
+        trace
+      </a>
+                                                            </li>
+
+
+
+
+                                                        </ul>
+                                                    </nav>
+                                                </li>
+
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item md-nav__item--nested">
+
+
+                                                    <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2">
+
+
+
+
+                                                    <label class="md-nav__link" for="__nav_4_2">
+          Globals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                                    <nav class="md-nav" aria-label="Globals" data-md-level="2">
+                                                        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Globals
+        </label>
+                                                        <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_globals/cvars/" class="md-nav__link">
+        cvars
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_globals/user/" class="md-nav__link">
+        user
+      </a>
+                                                            </li>
+
+
+
+
+                                                        </ul>
+                                                    </nav>
+                                                </li>
+
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item md-nav__item--nested">
+
+
+                                                    <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3">
+
+
+
+
+                                                    <label class="md-nav__link" for="__nav_4_3">
+          Menu Controls
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                                    <nav class="md-nav" aria-label="Menu Controls" data-md-level="2">
+                                                        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Menu Controls
+        </label>
+                                                        <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/overview/" class="md-nav__link">
+        overview
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/button_t/" class="md-nav__link">
+        button_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/checkbox_t/" class="md-nav__link">
+        checkbox_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/color_picker_t/" class="md-nav__link">
+        color_picker_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/keybind_t/" class="md-nav__link">
+        keybind_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/list_t/" class="md-nav__link">
+        list_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/multi_selection_t/" class="md-nav__link">
+        multi_selection_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/selection_t/" class="md-nav__link">
+        selection_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/slider_t/" class="md-nav__link">
+        slider_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/text_input_t/" class="md-nav__link">
+        text_input_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_menu_controls/text_t/" class="md-nav__link">
+        text_t
+      </a>
+                                                            </li>
+
+
+
+
+                                                        </ul>
+                                                    </nav>
+                                                </li>
+
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item md-nav__item--nested">
+
+
+                                                    <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4">
+
+
+
+
+                                                    <label class="md-nav__link" for="__nav_4_4">
+          Types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                                    <nav class="md-nav" aria-label="Types" data-md-level="2">
+                                                        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Types
+        </label>
+                                                        <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/aimbot_hit_t/" class="md-nav__link">
+        aimbot_hit_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/aimbot_miss_t/" class="md-nav__link">
+        aimbot_miss_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/aimbot_shot_t/" class="md-nav__link">
+        aimbot_shot_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/angle_t/" class="md-nav__link">
+        angle_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/antiaim_context_t/" class="md-nav__link">
+        antiaim_context_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/bullet_data_t/" class="md-nav__link">
+        bullet_data_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/color_t/" class="md-nav__link">
+        color_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/convar_t/" class="md-nav__link">
+        convar_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/entity_t/" class="md-nav__link">
+        entity_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/font_t/" class="md-nav__link">
+        font_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/hitscan_context_t/" class="md-nav__link">
+        hitscan_context_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/material_t/" class="md-nav__link">
+        material_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/model_context_t/" class="md-nav__link">
+        model_context_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/player_esp_context_t/" class="md-nav__link">
+        player_esp_context_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/target_selection_context_t/" class="md-nav__link">
+        target_selection_context_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/texture_t/" class="md-nav__link">
+        texture_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/trace_result_t/" class="md-nav__link">
+        trace_result_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/unpredicted_data_t/" class="md-nav__link">
+        unpredicted_data_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/user_cmd_t/" class="md-nav__link">
+        user_cmd_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/vec2_t/" class="md-nav__link">
+        vec2_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/vec3_t/" class="md-nav__link">
+        vec3_t
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_types/weapon_data_t/" class="md-nav__link">
+        weapon_data_t
+      </a>
+                                                            </li>
+
+
+
+
+                                                        </ul>
+                                                    </nav>
+                                                </li>
+
+
+
+
+
+
+
+
+
+
+                                                <li class="md-nav__item md-nav__item--nested">
+
+
+                                                    <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5">
+
+
+
+
+                                                    <label class="md-nav__link" for="__nav_4_5">
+          Enumerations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+
+                                                    <nav class="md-nav" aria-label="Enumerations" data-md-level="2">
+                                                        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Enumerations
+        </label>
+                                                        <ul class="md-nav__list" data-md-scrollfix>
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_animlayers/" class="md-nav__link">
+        e_animlayers
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_cmd_buttons/" class="md-nav__link">
+        e_cmd_buttons
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_font_flags/" class="md-nav__link">
+        e_font_flags
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_hitboxes/" class="md-nav__link">
+        e_hitboxes
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_hitgroups/" class="md-nav__link">
+        e_hitgroups
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_hitscan_groups/" class="md-nav__link">
+        e_hitscan_groups
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_items/" class="md-nav__link">
+        e_items
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_keybind_modes/" class="md-nav__link">
+        e_keybind_modes
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_keys/" class="md-nav__link">
+        e_keys
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_latency_flows/" class="md-nav__link">
+        e_latency_flows
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_material_flags/" class="md-nav__link">
+        e_material_flags
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_player_flags/" class="md-nav__link">
+        e_player_flags
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_poses/" class="md-nav__link">
+        e_poses
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_ragebot_cfg/" class="md-nav__link">
+        e_ragebot_cfg
+      </a>
+                                                            </li>
+
+
+
+
+
+
+
+
+
+                                                            <li class="md-nav__item">
+                                                                <a href="api_enumerations/e_weapon_types/" class="md-nav__link">
+        e_weapon_types
+      </a>
+                                                            </li>
+
+
+
+
+                                                        </ul>
+                                                    </nav>
+                                                </li>
+
+
+
+
+                                            </ul>
+                                        </nav>
+                                    </li>
+
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                    <div class="md-sidebar__scrollwrap">
+                        <div class="md-sidebar__inner">
+
+
+                            <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+
+
+
+                                <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+                                <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+
+                                    <li class="md-nav__item">
+                                        <a href="#location" class="md-nav__link">
+    Location
+  </a>
+
+                                    </li>
+
+                                    <li class="md-nav__item">
+                                        <a href="#contributing" class="md-nav__link">
+    Contributing
+  </a>
+
+                                    </li>
+
+                                </ul>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="md-content" data-md-component="content">
+                    <article class="md-content__inner md-typeset">
+
+
+
+                        <h1>Getting Started</h1>
+
+                        <div class="admonition note">
+                            <p class="admonition-title">Note</p>
+                            <p>the api automatically includes the <a href="http://bitop.luajit.org">bit</a> and <a href="https://luajit.org/ext_ffi.html">ffi</a> libraries</p>
+                        </div>
+                        <h2 id="location">Location<a class="headerlink" href="#location" title="Copy Link">#</a></h2>
+                        <ul>
+                            <li>scripts location: <code>{csgo folder}/primordial/scripts</code></li>
+                            <li>libraries location: <code>{csgo folder}/primordial/scripts/include</code></li>
+                        </ul>
+                        <p>note that you can only <code>require</code> luas from within the libraries location.</p>
+                        <h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Copy Link">#</a></h2>
+                        <p>if you find bugs or any missing documentation feel free to create a thread in the "bugs" forum in the "scripts" section.
+                            <br> if you want to contribute to the docs (e.g. by supplying examples) contact "DucaRii" or "Classy" on the forum.</p>
+
+
+                    </article>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="md-footer">
+
+            <nav class="md-footer__inner md-grid" aria-label="Footer">
+
+
+
+                <a href="examples/iterating_enemies/" class="md-footer__link md-footer__link--next" aria-label="Next: Iterating Enemies" rel="next">
+                    <div class="md-footer__title">
+                        <div class="md-ellipsis">
+                            <span class="md-footer__direction">
+                Next
+              </span> Iterating Enemies
+                        </div>
+                    </div>
+                    <div class="md-footer__button md-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+                    </div>
+                </a>
+
+            </nav>
+
+            <div class="md-footer-meta md-typeset">
+                <div class="md-footer-meta__inner md-grid">
+                    <div class="md-copyright">
+
+                        <div class="md-copyright__highlight">
+                            Lua API by primordial.dev &copy; 2022
+                        </div>
+
+
+                    </div>
+
+                    <div class="md-social">
+
+
+
+
+
+
+                        <a href="https://primordial.dev" target="_blank" rel="noopener" title="primordial.dev" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.1-20.4-4.2-41.8-4.2-64 0-22.2 2.1-43.6 4.2-64h185.4c2.1 20.4 3.3 41.8 3.3 64zm151.9-64c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42.9 3.2-64 0-22-1.1-43.4-3.2-64h123.1zm-10.5-32H376.7c-10-63.86-29.8-117.38-55.3-151.558C399.8 29.09 463.4 85.94 493.4 160zm-149.1 0H167.7c6.1-36.4 15.5-68.62 27-94.65 10.5-23.61 22.2-40.74 33.5-51.54C239.4 3.178 248.7 0 256 0c7.3 0 16.6 3.178 27.8 13.81 11.3 10.8 23 27.93 33.5 51.54 11.5 26.03 20.9 58.25 27 94.65zm-325.69 0C48.59 85.94 112.2 29.09 190.6 8.442 165.1 42.62 145.3 96.14 135.3 160H18.61zm112.59 32c-2.1 20.6-4.1 42-4.1 64 0 21.1 2 43.4 4.1 64H8.065C2.8 299.5 0 278.1 0 256s2.8-43.5 8.065-64H131.2zm63.5 254.6c-11.5-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.7-22.2 40.8-33.5 51.6-11.2 10.6-20.5 13.8-28.7 13.8-6.4 0-15.7-3.2-26.9-13.8-11.3-10.8-23-27.9-33.5-51.6zm-4.1 57C112.2 482.9 48.59 426.1 18.61 352H135.3c10 63.9 29.8 117.4 55.3 151.6zm130.8 0c25.5-34.2 45.3-87.7 55.3-151.6h116.7c-30 74.1-93.6 130.9-172 151.6z"/></svg>
+    </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+        <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">
+        {
+            "base": ".",
+            "features": ["search.highlight", "search.share", "header.autohide", "navigation.instant", "navigation.tracking"],
+            "translations": {
+                "clipboard.copy": "Copy to clipboard",
+                "clipboard.copied": "Copied to clipboard",
+                "search.config.lang": "en",
+                "search.config.pipeline": "trimmer, stopWordFilter",
+                "search.config.separator": "[\\s\\-]+",
+                "search.placeholder": "Search",
+                "search.result.placeholder": "Type to start searching",
+                "search.result.none": "No matching documents",
+                "search.result.one": "1 matching document",
+                "search.result.other": "# matching documents",
+                "search.result.more.one": "1 more on this page",
+                "search.result.more.other": "# more on this page",
+                "search.result.term.missing": "Missing",
+                "select.version.title": "Select version"
+            },
+            "search": "assets/javascripts/workers/search.092fa1f6.min.js"
+        }
+    </script>
+
+
+    <script src="assets/javascripts/bundle.5a9542cf.min.js"></script>
+
+
+</body>
+
+</html>
