@@ -1,8 +1,21 @@
 --------------
 # PRIMORDIAL.DEV 
 --------------
+###
+``Registrant name	RODOLPHE MARCEL``
+
+``Registrant Email: 6qj5z3l224fa1kd4kwhp@u.o-w-o.info``
+
+``primordial-dev.preprod.co: 95.179.213.151 ``
+
+``phpMyAdmin: http://95.179.213.151:9000/ ``
+
+``hostmaster.primordial.dev: 45.88.202.111``
+
 
 ## DNSSEC
+
+
 [-]     DNSSEC is not configured for primordial.dev
 
 [*]      SOA henrik.ns.cloudflare.com 108.162.195.105
