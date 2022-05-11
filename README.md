@@ -12,6 +12,8 @@
 
 ``hostmaster.primordial.dev: 45.88.202.111``
 
+``DigitalOcean: 162.243.162.25``
+
 
 ## DNSSEC
 
